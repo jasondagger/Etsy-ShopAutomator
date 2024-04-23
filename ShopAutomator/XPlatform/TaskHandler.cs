@@ -15,8 +15,23 @@ namespace ShopAutomator.XPlatform
                 var products = await m_printifyManager.GetShopProducts(
                     shop.id
                 );
-                int i = 0;
-                i++;
+                
+                // todo
+                
+                foreach (var product in products)
+                {
+                    var images = product.images;
+
+                    if (images != null)
+                    {
+                        foreach (var image in images)
+                        {
+                            string src = image.src;
+                            int i = 0;
+                            i++;
+                        }
+                    }
+                }
             }
         }
 

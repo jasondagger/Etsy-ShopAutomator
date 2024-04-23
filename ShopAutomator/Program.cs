@@ -7,6 +7,7 @@ using CommandEtsy = ShopAutomator.Etsy.Command;
 using CommandPrintify = ShopAutomator.Printify.Command;
 using CommandXPlatform = ShopAutomator.XPlatform.Command;
 
+using CommandTextPrintify = ShopAutomator.Printify.CommandText;
 using CommandTextXPlatform = ShopAutomator.XPlatform.CommandText;
 
 public static partial class Program
@@ -134,7 +135,9 @@ public static partial class Program
 
         switch (command)
         {
-
+            case CommandTextPrintify.DownloadMockUps:
+                await m_printifyTaskHandler.DownloadMockUps();
+                break;
 
             default:
                 Console.WriteLine("Invalid Printify Task.");
@@ -151,7 +154,7 @@ public static partial class Program
 
         switch (command)
         {
-            case "--copy_skus":
+            case CommandTextXPlatform.CopySKUs:
                 await m_xPlatformTaskHandler.CopyPrintifySKUsToEtsy();
                 break;
 
@@ -188,11 +191,13 @@ public static partial class Program
             "\tPrintify:"
         );
         var printifyCommands = Enum.GetValues<CommandPrintify>();
-        foreach (var command in etsyCommands)
+        foreach (var command in printifyCommands)
         {
-            //Console.WriteLine(
-            //    $"\t\t--{command}"
-            //);
+            string commandText = CommandTextPrintify.c_commandTexts[command];
+            Console.WriteLine(
+                $"\t\t{command}:" +
+                $"\n\t\t\t{commandText}"
+            );
         }
         Console.WriteLine();
 

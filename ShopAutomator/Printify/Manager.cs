@@ -49,14 +49,11 @@ namespace ShopAutomator.Printify
                         products.Add(
                             product
                         );
-                        Console.WriteLine(
-                            $"{product.id}: {product.title}"
-                        );
                     }
 
                     if (productsPage.last_page_url == $"/?page={pageIndex++}")
                     {
-                        Console.WriteLine($"{products.Count}");
+                        Console.WriteLine($"Number of Products found for Shop Id {shopId}: {products.Count}");
                         break;
                     }
                 }
